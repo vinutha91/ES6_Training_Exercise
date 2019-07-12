@@ -34,6 +34,7 @@ app.get('/', (req, res) => {
 });
 
 require('./routes/vehicle.route')(app);
+require('./routes/trip.route')(app);
 
 // listen for requests
 app.listen(3000, () => {
