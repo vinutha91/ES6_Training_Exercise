@@ -49,3 +49,14 @@ exports.delete = (req, res) => {
         res.send(data);
     })
 };
+
+exports.getLastTrip = (req, res) => {
+    var vehicle_number = req.params.vehicleNumber;
+    Trip.find({number: vehicle_number}, function(err, data) {
+        if (data.length === 0) {
+            res.send('No trips found under this vehicle number!');
+        } else {
+            res.send([data[data.length - 1]]);
+        }
+    })
+}

@@ -5,7 +5,7 @@ const TripSchema = mongoose.Schema({
     totalFuelPrice: Number,
     pricePerLtr: Number,
     date: Date,
-    number: { type: String, unique: true }
+    number: { type: String, unique: false }
 }, {
     timestamps: true
 });

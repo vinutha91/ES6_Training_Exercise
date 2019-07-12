@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
-const autoIncrement = require('mongoose-auto-increment');
 
 const VehicleSchema = mongoose.Schema({
     type: String,
     name: String,
-    number: String,
+    number: { type: String, unique: true },
     kms: Number
 }, {
     timestamps: true

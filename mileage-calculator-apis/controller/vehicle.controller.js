@@ -2,7 +2,7 @@ const Vehicle = require('../models/vehicle.model');
 
 // Create and Save a new Vehicle
 exports.create = (req, res) => {
-    console.log(req.body.type)
+    console.log(req.body)
     // Validate request
     // if(!req.body.content) {
     //     return res.status(400).send({
