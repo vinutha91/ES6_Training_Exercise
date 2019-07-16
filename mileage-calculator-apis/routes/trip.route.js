@@ -13,6 +13,9 @@ module.exports = (app) => {
     // Retrieve a single trip with tripId
     app.get('/getLastTrip/:vehicleNumber', trip.getLastTrip);
 
+    // Retrieve trips with vehicleNumber
+    app.get('/getTripsForVehicle/:vehicleNumber', trip.getTripsForVehicle);
+
     // Update a trip with tripId
     app.put('/trip/:tripId', trip.update);
 
