@@ -5,21 +5,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./index.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body onload="getAllVehicles()">
     <select id="vehicles" onchange="selectVehicle();">
         <option disabled selected value>-- Please select an option --</option>
     </select>
-    <div id="previousKmReading"></div>
+    
+    <div id="chart_div"></div>
 
-    <table id="vehicleTrips">
-        
-    </table>
+    <h3>Average total fuel price:</h3>
+    <label id="totalFuelPrice"></label>
 
-    <div id="errorMessasge"></div>
+    <h3>Overall Average of Vehicles:</h3>
+    <label id="totalFuelPrice"></label>
 
     <script src="./index.js"></script>
+    <script>
+
+    function drawBarChart() {
+        var chartData = [];
+        chartData.push(['Fuel Price', 'Trip']);
+        allTripsOfVehicle.forEach((trip) => {
+            var tripDate = new Date(trip.date);
+            var dateString = tripDate.getDate() + '/' + parseInt(tripDate.getMonth() + 1) + '/' + tripDate.getFullYear();
+            chartData.push(
+                [
+                    dateString,
+                    Number(trip.totalFuelPrice)
+                ]
+            );
+        });
+
+        var data = google.visualization.arrayToDataTable(chartData);
+
+      var options = {
+        title: 'Trip vs Fuel Price',
+        chartArea: {width: '50%'},
+        hAxis: {
+            title: 'Trip Date'
+        },
+        vAxis: {
+          title: 'Fuel Price',
+          minValue: 0
+        }
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
+    </script>
 </body>
 
 </html>
